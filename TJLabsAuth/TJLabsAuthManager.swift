@@ -47,22 +47,26 @@ public class TJLabsAuthManager {
         }
     }
 
-    public func getAccessToken(completion: @escaping (TokenResult) -> Void) {
-        if isTokenNearExpiry(token: refreshToken, threshold: 60) {
-            reauthenticateIfPossible(completion: completion)
-            return
-        }
-
-        if isTokenNearExpiry(token: accessToken, threshold: 60) {
-            refresh { status, success in
-                if success {
-                    completion(.success(self.accessToken))
-                } else {
-                    completion(.failure(.refreshFailed, statusCode: status, message: "Failed to refresh token"))
-                }
-            }
-        } else {
+    public func getAccessToken(update: Bool = true, completion: @escaping (TokenResult) -> Void) {
+        if !update {
             completion(.success(accessToken))
+        } else {
+            if isTokenNearExpiry(token: refreshToken, threshold: 60) {
+                reauthenticateIfPossible(completion: completion)
+                return
+            }
+
+            if isTokenNearExpiry(token: accessToken, threshold: 60) {
+                refresh { status, success in
+                    if success {
+                        completion(.success(self.accessToken))
+                    } else {
+                        completion(.failure(.refreshFailed, statusCode: status, message: "Failed to refresh token"))
+                    }
+                }
+            } else {
+                completion(.success(accessToken))
+            }
         }
     }
 
