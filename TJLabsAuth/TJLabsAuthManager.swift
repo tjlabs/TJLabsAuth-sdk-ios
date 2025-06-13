@@ -69,6 +69,31 @@ public class TJLabsAuthManager {
             }
         }
     }
+    
+    public func extractTenantID(from jwt: String) -> String? {
+        let segments = jwt.components(separatedBy: ".")
+        guard segments.count == 3 else { return nil }
+
+        let payloadSegment = segments[1]
+        
+        var base64 = payloadSegment
+            .replacingOccurrences(of: "-", with: "+")
+            .replacingOccurrences(of: "_", with: "/")
+        
+        // Padding 추가
+        while base64.count % 4 != 0 {
+            base64 += "="
+        }
+
+        guard let payloadData = Data(base64Encoded: base64),
+              let jsonObject = try? JSONSerialization.jsonObject(with: payloadData, options: []),
+              let payloadDict = jsonObject as? [String: Any],
+              let tenantID = payloadDict["tenant_id"] as? String else {
+            return nil
+        }
+
+        return tenantID
+    }
 
     public func getRefreshToken() -> String {
         return refreshToken

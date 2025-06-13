@@ -1,7 +1,7 @@
 
 import Foundation
 
-enum AuthRegion: String {
+public enum AuthRegion: String {
     case KOREA = "KOREA"
     case US_EAST = "US_EAST"
     case CANADA = "CANADA"

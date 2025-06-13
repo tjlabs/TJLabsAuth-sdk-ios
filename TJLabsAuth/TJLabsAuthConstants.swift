@@ -22,10 +22,10 @@ public class TJLabsAuthConstants {
         case AuthRegion.KOREA.rawValue:
             REGION_PREFIX = "ap-northeast-2."
             REGION_NAME = "Korea"
-        case AuthRegion.KOREA.rawValue:
+        case AuthRegion.CANADA.rawValue:
             REGION_PREFIX = "ca-central-1."
             REGION_NAME = "Canada"
-        case AuthRegion.KOREA.rawValue:
+        case AuthRegion.US_EAST.rawValue:
             REGION_PREFIX = "us-east-1."
             REGION_NAME = "US"
         default:
