@@ -53,11 +53,11 @@ public class TJLabsAuthConstants {
     
     public static func getUserTokenURL() -> String {
         if SERVER_TYPE == "jupiter" {
-            return USER_URL + "/" + USER_JUPITER_TOKEN_SERVER_VERSION + "/user"
+            return USER_URL + "/" + USER_JUPITER_TOKEN_SERVER_VERSION + "/token"
         } else if SERVER_TYPE == "phoenix" {
-            return USER_URL + "/" + USER_PHOENIX_TOKEN_SERVER_VERSION + "/user"
+            return USER_URL + "/" + USER_PHOENIX_TOKEN_SERVER_VERSION + "/token"
         } else {
-            return USER_URL + "/" + USER_JUPITER_TOKEN_SERVER_VERSION + "/user"
+            return USER_URL + "/" + USER_JUPITER_TOKEN_SERVER_VERSION + "/token"
         }
     }
 }
