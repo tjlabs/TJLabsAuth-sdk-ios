@@ -1,7 +1,7 @@
 
 import Foundation
 
-class TJLabsAuthConstants {
+public class TJLabsAuthConstants {
     static let TIMEOUT_VALUE_PUT: TimeInterval = 5.0
     static let TIMEOUT_VALUE_POST: TimeInterval = 5.0
     
@@ -33,6 +33,7 @@ class TJLabsAuthConstants {
             REGION_NAME = "Korea"
         }
         
+        SERVER_TYPE = serverType
         USER_URL = HTTP_PREFIX + REGION_PREFIX + "user." + serverType + SUFFIX
     }
     
